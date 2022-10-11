@@ -212,3 +212,63 @@ Pour modifier une valeur associée à une clé il suffit de la réassigner comme
 {"clef 1":"valeur a", "clef 2":"valeur 2"}
 ```
 On peut récupérer toutes les clefs d'un dictionnaire avec la méthode `D.keys()`
+___
+## Opérations sur les variables
+### Tests
+Les tests permettent de comparer deux valeurs de même type. Un test renverra toujours un résultat [Booléen](#Boolean) (True ou False).
+
+| Test | Console | Utilisation | Résultat | Type | Question posée |
+| :-------: | :---: | :-: | :-------: | :---: | - |
+| = | == | 20 == 3 | False | bool | Est-ce que 20 = 3 ? |
+| $\neq$ | != | 20 != 3 | True | bool | Est-ce que 20 $\neq$ 3 ? |
+| < | == | 20 < 3 | False | bool | Est-ce que 20 < 3 ? |
+| $\leqslant$ | <= | 20 <= 3 | False | bool | Est-ce que 20 $\leqslant$ 3 ? |
+| > | > | 20 > 3 | True | bool | Est-ce que 20 > 3 ? |
+| $\geqslant$ | >= | 20 >= 3 | True | bool | Est-ce que 20 $\geqslant$ 3 ? |
+___
+### Claculs sur les nombres
+Un ordinateur est capable d’effectuer différentes opérations mathématiques avec des nombres entiers et décimaux mais également avec d’autres types de données comme des chaînes de caractères.  
+  
+L’ensemble des exemples présentés par la suite sont à saisir dans la console Python. Pour en afficher le résultat, on utilise la fonction **print()**.  
+  
+Le type caractérise la nature de la valeur : il peut s’agir d’un nombre entier , d’un nombre en virgule flottante, d’une chaîne de caractères ou d’un booléen.
+
+| Opérateur | Console | Utilisation | Résultat | Type | Explication |
+| :-------: | :---: | :-: | :-------: | :---: | - |
+| + | + | 20 + 3 | 23 | int | Addition de 20 et 3 |
+| - | - | 20 - 3 | 17 | int | Soustraction de 20 et 3 |
+| x | * | 20 * 3 | 60 | int | Multiplication de 20 et 3 |
+| % | / | 20 / 3 | 6.66667 | float | Division de 20 et 3 |
+|  | // | 20 // 3 | 6 | int | Partie entière de la division euclidienne de 20 par 3 |
+| modulo | % | 20 % 3 | 2 | int | Reste de la division euclidienne de 20 par 3 |
+| ^ (puissance) | ** | 2 ** 3 | 8 | int | 2 puissance 3 |
+
+#### Opérateurs d'affectation
+Les opérateurs d'affectation sont utilisés en **Python** pour rendre le code plus aéré et lisible. Il consiste à remplacer la modification classique d'une variable par un affectation plus compacte.
+
+| modification classique | Opérateurs d'affectation |
+| :-: | :-: |
+| a = a + 3 | a += 3 |
+| a = a - 3 | a -= 3 |
+| a = a * 3 | a \*= 3 |
+| a = a / 3 | a /= 3 |
+| a = a // 3 | a //= 3 |
+| a = a % 3 | a %= 3 |
+| a = a ** 3 | a \*\*= 3 |
+___
+### Opérations sur les chaines de caractères
+On peut utiliser un + entre deux chaines de caractères pour les mettre à la suite :
+```python
+>> a = 'Cours '
+>> b = 'Cyrano'
+>> c = a + b
+>> print(c)
+'Cours Cyrano'
+```
+> 💡 la chaine de caractère *a* se termine par un espace
+
+on peut aussi utiliser le signe \* pour répéter un certain nombre de fois une chaine de caractères :
+```python
+>> 'cous' * 2
+'couscous'
+```
