@@ -1,0 +1,119 @@
+<h3>💡 P'tite info</h3>
+<p>La place est un grand problème de l'informatique. La représentation des choses est donc pensée pour occuper le moins de place possible. Par exemple, le code ASCII permet de stocker n'importe que caractère <a class="italic">classique</a> sur 8 bits.<br>
+    Le <bold>codage de Huffman</bold> permet de réduire encore la taille nécessaire pour stocker ces informations en attribuant un nombre plus petit de bits à des caractères revenant plus souvant (le <bold>a</bold> ou le <bold>e</bold> en français par exemple).<br>
+    Cela permet d'économiser en moyenne <bold>30%</bold> de la mémoire nécessaire.<br>
+    Cette méthode de compression fonctionne avec l'utilisation d'un <bold>arbre binaire</bold> :
+</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Huffman_tree_2.svg/350px-Huffman_tree_2.svg.png">
+<p>voici la table de conversion de l'arbre précédent :
+    <table border="1">
+        <thead>
+            <tr>
+                <th>caractère</th>
+                <th>binaire ASCII</th>
+                <th align="center">binaire Huffman</th>
+                <th>bits économisés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center">e</td>
+                <td>01100101</td>
+                <td>000</td>
+                <td align="center">5</td>
+            </tr>
+            <tr>
+                <td align="center">a</td>
+                <td>01100001</td>
+                <td>010</td>
+                <td align="center">5</td>
+            </tr>
+            <tr>
+                <td align="center">espace</td>
+                <td>00100000</td>
+                <td>111</td>
+                <td align="center">5</td>
+            </tr>
+            <tr>
+                <td align="center">n</td>
+                <td>01101110</td>
+                <td>0010</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">t</td>
+                <td>01110100</td>
+                <td>0110</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">m</td>
+                <td>01101101</td>
+                <td>0111</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">i</td>
+                <td>01101001</td>
+                <td>1000</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">h</td>
+                <td>01101001</td>
+                <td>1010</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">s</td>
+                <td>01110011</td>
+                <td>1011</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">f</td>
+                <td>01100110</td>
+                <td>1101</td>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <td align="center">o</td>
+                <td>01101111</td>
+                <td>00110</td>
+                <td align="center">3</td>
+            </tr>
+            <tr>
+                <td align="center">u</td>
+                <td>01110101</td>
+                <td>00111</td>
+                <td align="center">3</td>
+            </tr>
+            <tr>
+                <td align="center">x</td>
+                <td>01111000</td>
+                <td>10010</td>
+                <td align="center">3</td>
+            </tr>
+            <tr>
+                <td align="center">p</td>
+                <td>01110000</td>
+                <td>10011</td>
+                <td align="center">3</td>
+            </tr>
+            <tr>
+                <td align="center">r</td>
+                <td>01110010</td>
+                <td>11000</td>
+                <td align="center">3</td>
+            </tr>
+            <tr>
+                <td align="center">l</td>
+                <td>01101100</td>
+                <td>11001</td>
+                <td align="center">3</td>
+            </tr>
+        </tbody>
+        </table>
+        <p>On convertira donc <a class="italic">salut</a> en "<strong>1011 010 11001 00111 0110</strong>" au lieu de <a class="italic">01110011 01100001 01101100 01110101 01110100</a>, ce qui fait économiser 19 bits (au lieu de faire 40 bits, le message en fait seulement 21).</p>
+        <p><a href="https://fr.wikipedia.org/wiki/Codage_de_Huffman">Codage de Huffman</a></p>
+</p>
