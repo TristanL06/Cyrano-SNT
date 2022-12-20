@@ -1,0 +1,41 @@
+<h3>💡 P'tite info</h3>
+
+<blockquote>
+<p>Cette info aborde une notion complexe de l&#39;informatique, c&#39;est intéressant mais ce n&#39;est pas grave de ne pas la comprendre maintenant. </p>
+</blockquote>
+<p>Une fonction <strong>récursive</strong> est une fonction qui s&#39;appelle elle-même. Ce mode de fonctionnement demande de changer de mode de penser mais permet de réduire drastiquement la longueur du code et d&#39;optimiser l&#39;utilisation de variables.<br>Cela permet également de décomposer le problème en problème de plus en plus petit pour le résoudre très simplement.</p>
+<p>Par exemple, si on veut chercher un élément dans une liste on peut écrire ce code :</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contient</span><span class="hljs-params">(liste, element)</span>:</span>
+    <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> liste:
+        <span class="hljs-keyword">if</span> e == element:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+
+
+contient([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">#va renvoyer False</span>
+contient([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">#va renvoyer True</span>
+</code></pre>
+<p>Si on veut l&#39;écrire de manière récursive on peut vérifier si le premier élément de la liste est l&#39;élément recherché, sinon on enlève le premier élément et on recommence :</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contient</span><span class="hljs-params">(liste,element)</span>:</span>
+    <span class="hljs-keyword">if</span> len(liste) == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+    <span class="hljs-keyword">if</span> liste[<span class="hljs-number">0</span>] == element:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
+    <span class="hljs-keyword">return</span> contient(liste[<span class="hljs-number">1</span>:],element)
+
+contient([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">#va renvoyer False</span>
+contient([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">#va renvoyer True</span>
+</code></pre>
+<p>On a bien ici :</p>
+<ul>
+<li>un paramètre changeant (la liste qui est tronquée à chaque appel)</li>
+<li>une condition d&#39;arrêt (un return False si la liste est vide)</li>
+<li>un appel à lui-même (la fonction contient appelle la fonction contient)</li>
+</ul>
+<p>on a donc cet arbre des appels récurcifs :</p>
+<pre><code class="lang-txt">appel contient([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">3</span>)
+    appel contient([<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], <span class="hljs-number">3</span>)
+        return True
+    return True
+</code></pre>
+<p>Pour plus de détails sur ce cours vous pouvez lire le <a href="https://github.com/TristanL06/Cyrano-NSI/blob/main/Chapitre%202%20:%20R%C3%A9cursivit%C3%A9/cours.md">cours de NSI</a></p>
