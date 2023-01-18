@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cours Cyrano • 404</title>
+            <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/114646770">
+            <link rel="stylesheet" href="style.css" type="text/css" media="all">
+    </head>
+<body>
+   <h1 id="introduction">Introduction</h1>
+   <h2 id="interface">Interface</h2>
+   <p>Le principal langage sur lequel nous allons nous baser est <strong>Python</strong>, il est donc important de
+      savoir comment l&#39;utiliser.
+      Sous Spyder (de même que sur la plupart des IDE) il y a deux éléments primordiaux : l&#39;<strong>éditeur</strong>
+      et l&#39;<strong>interpréteur</strong>.
+      <img src="https://assets.lls.fr/pages/35776949/capture-d-cran-2020-10-29-095757.png" alt="Interface Spyder">
+   </p>
+   <p>Pour tester simplement une commande on peut utiliser l&#39;interpréteur, pas besoin d&#39;utiliser la fonction
+      <code>print</code> pour avoir un retour du résultat.</p>
+   <blockquote>
+      <p>C&#39;est pratique pratique pour tester les fonctions mais totalement inadapté pour un code complet</p>
+   </blockquote>
+   <p>C&#39;est pour ça que l&#39;on va écrire dans l&#39;éditeur de texte. On va pouvoir y mettre un programme complet
+      et l&#39;<em>exécuter</em> en appuyant sur le triangle vert (ou <code>f5</code>). Le résultat sera affiché dans
+      l&#39;interpréteur.</p>
+   <blockquote>
+      <p>:warning: Si la foction <em>print()</em> n&#39;est pas utilisée le programme va bien s&#39;exécuter mais ne va
+         rien renvoyer</p>
+   </blockquote>
+   <hr>
+   <h2 id="constantes-et-variables">Constantes et variables</h2>
+   <p>Dans tous les langages de programmation il est nécessaire de stocker des données, pour les exploiter ou les
+      afficher.</p>
+   <p>Une <strong>constante</strong> est par définition non modifiable. Elle peut être de tous les
+      <strong>types</strong> possibles.<br>
+      En python les constantes n&#39;existent pas, si on a besoin d&#39;en utiliser une dans un code conventionnellement
+      son nom est noté en majuscules, pour le différentier des variables.</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; CONSTANTE = <span class="hljs-string">"valeur"</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; CONSTANTE
+<span class="hljs-string">"valeur"</span>
+</code></pre>
+   <p><em>Ici on <strong>affecte</strong> la valeur &quot;valeur&quot; à la variable <strong>CONSTANTE</strong></em></p>
+   <p>Une <strong>variable</strong> permet de stocker en mémoire une valeur. En python cette opération est plus simple
+      que dans la plupart des autres langages car l&#39;affectation d&#39;une valeur à une variable utilise le typage
+      dynamique, ce qui veut dire que l&#39;utilisateur n&#39;a pas besoin de renseigner le <strong>type</strong> de la
+      valeur au moment de la création de la variable et l&#39;on peut affecter des valeurs de différents types à une
+      même variable lors de l&#39;exécution du programme.</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; variable = <span class="hljs-string">"ceci est un texte"</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; variable
+<span class="hljs-string">"ceci est un texte"</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; variable = [<span class="hljs-string">"ceci"</span>,<span class="hljs-string">"est"</span>,<span class="hljs-string">"une"</span>,<span class="hljs-string">"liste"</span>]
+<span class="hljs-meta">&gt;&gt;</span>&gt; variable
+[<span class="hljs-string">"ceci"</span>,<span class="hljs-string">"est"</span>,<span class="hljs-string">"une"</span>,<span class="hljs-string">"liste"</span>]
+</code></pre>
+   <hr>
+   <h2 id="les-types">Les types</h2>
+   <p>Pour utiliser les constantes et les variables il est nécessaire de savoir travailler avec les types.</p>
+   <blockquote>
+      <p>💡 Il existe de nombreux types différents et de nombreuses bilbiothèques ont leur propre type (les tableaux
+         avec numpy par exemple).</p>
+   </blockquote>
+   <p>Python comprend 6 types de base qu&#39;il est important de connaître :</p>
+   <ul>
+      <li><a href="#None">None</a></li>
+      <li><a href="#Boolean">Boolean</a></li>
+      <li><a href="#Integer">Integer</a></li>
+      <li><a href="#Float">Float</a></li>
+      <li><a href="#String">String</a></li>
+      <li><a href="#List">List</a></li>
+      <li><a href="#Dict">Dictionary</a></li>
+   </ul>
+   <h3 id="none">None</h3>
+   <p>None est un type très particulier de python, qui ne contient que l&#39;objet None. Il n&#39;est égal qu&#39;à
+      lui-même et est la réponse renvoyée par défaut par toutes les fonctions se terminant sans <code>return</code></p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; None
+None
+<span class="hljs-meta">&gt;&gt;</span>&gt; type(None)
+&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">NoneType</span>'&gt;</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; None == None
+True
+</code></pre>
+   <p>En pratique il est rarement utilisé et toujours dans des cas assez simples. Il faut donc juste savoir qu&#39;il
+      existe.</p>
+   <h3 id="boolean">Boolean</h3>
+   <p>Boolean (Booléen en français) est LE type du binaire.</p>
+   <p>Un booléen peut prendre exactement 2 valeurs : 0 et 1<br>
+      Le 0 est également appelé False et le 1 est appelé True.</p>
+   <p>Plusieurs booléens forment des nombres binaires, qui sont à la base du fonctionnement de tous les appareils
+      électroniques.</p>
+   <p>Les booléens peuvent êtres comparés les uns aux autres par les comparateurs <code>&gt;</code> ; <code>&gt;=</code>
+      ; <code>&lt;</code> ; <code>&lt;=</code> ; <code>==</code> ; <code>!=</code><br>
+      La seule méthode qu&#39;on peut lui appliquer est le <code>not</code>, qui permet de changer sa valeur :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; etat = True
+<span class="hljs-meta">&gt;&gt;</span>&gt; etat = not etat
+<span class="hljs-meta">&gt;&gt;</span>&gt; etat
+False
+</code></pre>
+   <p>La fonction <code>bool()</code> permet de retourner un booléen en prenant en argument n&#39;importe quel
+      objet.<br>
+      Si l&#39;objet est un nombre (type numérique), <code>bool()</code> renvoie <code>False</code> si il est égale à 0,
+      il renvoie <code>True</code> sinon :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-number">0</span>)
+False
+<span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-number">1</span>)
+True
+<span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-number">3</span>)
+True
+<span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-number">0</span>.<span class="hljs-number">0</span>)
+False
+</code></pre>
+   <p>Pour tous les autres types, si la taille est nulle (liste vide, tuple vide, chaine de caractère vide ou
+      dictionnaire vide) elle renvoie <code>False</code>, elle renvoie <code>True</code> sinon.</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-string">""</span>)
+False
+<span class="hljs-meta">&gt;&gt;</span>&gt; bool(<span class="hljs-string">"chaine de caractères"</span>)
+True
+<span class="hljs-meta">&gt;&gt;</span>&gt; bool([])
+False
+</code></pre>
+   <p>Avec <code>None</code> ça retourne toujours <code>False</code></p>
+   <h3 id="integer">Integer</h3>
+   <p>Ce type regroupe tous les entiers relatifs ( comme -1, 0, 1, 2...). Contrairement à d&#39;autres langages (comme
+      le C ou JavaScript), il n&#39;est pas nécessaire de s&#39;occuper de la taille des entiers stockés, python gère
+      tout seul en fonction de la place nécessaire.</p>
+   <p>Une cours spécifique va arriver mais vous pouvez juste retenir que :</p>
+   <ul>
+      <li>On peut stocker tous les nombres de 0 à 255 (256 nombres) sur 1 octet (8 bits)</li>
+      <li>On peut stocker tous les nombres de -128 à 127 (256 nombres) sur 1 octet (8 bits)</li>
+   </ul>
+   <p>Des opérations mathématiques peuvent être appliquées sur les entiers : <br></p>
+   <ul>
+      <li>L&#39;addition : <code>+</code>
+         <pre><code class="lang-python">&gt;&gt;&gt; <span class="hljs-number">2</span> + <span class="hljs-number">3</span>
+<span class="hljs-number">5</span>
+</code></pre>
+      </li>
+      <li>La soustraction : <code>-</code>
+         <pre><code class="lang-python">&gt;&gt;&gt; <span class="hljs-number">2</span> - <span class="hljs-number">3</span>
+<span class="hljs-number">-1</span>
+</code></pre>
+         On peut également utiliser la division (<code>/</code>), la multiplication (<code>*</code>) et de nombreux
+         autres.
+      </li>
+   </ul>
+   <h3 id="float">Float</h3>
+   <p>Les flottants (float) regroupent tous les nombres décimaux : <code>3.5</code> ou <code>4.21</code> par
+      exemple.<br>
+      Ils sont écrits selon la norme anglo-saxonne, donc avec un point à la place de la virgule.<br></p>
+   <blockquote>
+      <p>⚠️La méthode informatique utilisée pour le stockage des flottants les approximent très légèrement. Il est donc
+         très fortement déconseillé d&#39;utiliser des égalités strictes (<code>==</code>,<code>!=</code>)</p>
+   </blockquote>
+   <p>Les même opérations mathématiques que pour les entiers peuvent être utilisées.<br>
+      Elles peuvent être utilisées entre des entiers et des flottants :</p>
+   <pre><code class="lang-python">&gt;&gt;&gt; <span class="hljs-number">3.5</span> * <span class="hljs-number">6</span>
+<span class="hljs-number">21.</span>
+&gt;&gt;&gt; <span class="hljs-number">1.25</span> * <span class="hljs-number">5</span>
+<span class="hljs-number">6.25</span>
+</code></pre>
+   <p>Le nombre <code>5.</code> est égale à 5 mais stocké sous forme flottant, ce qui explique la présence du point à la
+      fin.</p>
+   <h3 id="string">String</h3>
+   <p>Les chaines de caractère sont des suites de caractères qui peuvent contenir des lettres, des chiffres, des
+      signes...<br>
+      ils sont représentés entre deux guillemets (<code>&#39;chaine de caractères&#39;</code>), deux double guillemets
+      (<code>&quot;chaine de caractères&quot;</code>), ce qui est strictement équivalent.</p>
+   <p>On peut appliquer de nombreuses opérations à des chaines de caractère comme la concaténation (<code>+</code>) ou
+      la multiplication (<code>*</code>). Il est également possible de sélectionner un ou plusieurs caractères dans une
+      plage :</p>
+   <pre><code class="lang-python">&gt;&gt;&gt; <span class="hljs-selector-tag">a</span> = <span class="hljs-string">"ceci est mon string"</span>
+&gt;&gt;&gt; <span class="hljs-selector-tag">a</span>
+<span class="hljs-string">"ceci est mon string"</span>
+&gt;&gt;&gt; <span class="hljs-selector-tag">a</span> = <span class="hljs-selector-tag">a</span> + <span class="hljs-string">" Python"</span>
+&gt;&gt;&gt; <span class="hljs-selector-tag">a</span>
+<span class="hljs-string">"ceci est mon string Python"</span>
+&gt;&gt;&gt; <span class="hljs-selector-tag">a</span>[<span class="hljs-number">3</span>]
+<span class="hljs-string">"i"</span>
+&gt;&gt;&gt; <span class="hljs-selector-tag">a</span>[<span class="hljs-number">5</span>:<span class="hljs-number">8</span>]
+<span class="hljs-string">"est"</span>
+</code></pre>
+   <h3 id="list">List</h3>
+   <p>Une liste peut contenir des éléments de n&#39;importe quel type. On peut ajouter
+      (<code>L.append()</code>,<code>L.instert()</code>), enlever (<code>L.pop()</code>) un élément à une liste,
+      concaténer deux listes ensemble et accéder aux éléments d&#39;une liste avec leur indexe.</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; L = [<span class="hljs-string">"salut"</span>, <span class="hljs-string">"ceci"</span>, <span class="hljs-string">"est"</span>, <span class="hljs-number">1</span>, [<span class="hljs-string">"liste"</span>]]
+<span class="hljs-meta">&gt;&gt;</span>&gt; L.append(<span class="hljs-string">"pleine"</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; L
+[<span class="hljs-string">"salut"</span>, <span class="hljs-string">"ceci"</span>, <span class="hljs-string">"est"</span>, <span class="hljs-number">1</span>, [<span class="hljs-string">"liste"</span>], <span class="hljs-string">"pleine"</span>]
+<span class="hljs-meta">&gt;&gt;</span>&gt; <span class="hljs-string">"est"</span> in L
+True
+<span class="hljs-meta">&gt;&gt;</span>&gt; <span class="hljs-string">"liste"</span> in L
+False
+<span class="hljs-meta">&gt;&gt;</span>&gt; len(L)
+<span class="hljs-number">6</span>
+</code></pre>
+   <blockquote>
+      <p>⚠️ Lorsque l&#39;on utilise <code>P = L</code>, les deux variables L et P pointent vers le même objet. Toute
+         modification sur l&#39;une des deux listes est répercutée sur l&#39;autre. Il faut utiliser
+         <code>P = L[:]</code> ou <code>P = copy.deepcopy(L)</code> pour éviter cela.</p>
+      <p>💡 Les tuples sont des objets similaires aux listes, mais non modifiables</p>
+   </blockquote>
+   <h3 id="dict">Dict</h3>
+   <p>Les dictionnaires en informatique sont exactement comme les dictionnaires dans la vie réelle. Ils permettent de
+      stocker des &quot;valeurs&quot; indexées avec des &quot;clefs&quot;. On les définit avec la syntaxe suivante :
+      <code>{&quot;clef 1&quot;:&quot;valeur 1&quot;, &quot;clef 2&quot;:&quot;valeur 2&quot;}</code>.<br>
+      On peut accéder à une valeur en pointant la clé :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; D = {<span class="hljs-string">"clef 1"</span><span class="hljs-symbol">:<span class="hljs-string">"valeur 1"</span></span>, <span class="hljs-string">"clef 2"</span><span class="hljs-symbol">:<span class="hljs-string">"valeur 2"</span></span>}
+<span class="hljs-meta">&gt;&gt;</span>&gt; D[<span class="hljs-string">"clef 1"</span>]
+<span class="hljs-string">"valeur 1"</span>
+</code></pre>
+   <p>Pour modifier une valeur associée à une clé il suffit de la réassigner comme ceci :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; D[<span class="hljs-string">"clef 1"</span>] = <span class="hljs-string">"valeur a"</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; D
+{<span class="hljs-string">"clef 1"</span><span class="hljs-symbol">:<span class="hljs-string">"valeur a"</span></span>, <span class="hljs-string">"clef 2"</span><span class="hljs-symbol">:<span class="hljs-string">"valeur 2"</span></span>}
+</code></pre>
+   <p>On peut récupérer toutes les clefs d&#39;un dictionnaire avec la méthode <code>D.keys()</code></p>
+   <hr>
+   <h2 id="op-rations-sur-les-variables">Opérations sur les variables</h2>
+   <h3 id="tests">Tests</h3>
+   <p>Les tests permettent de comparer deux valeurs de même type. Un test renverra toujours un résultat <a
+         href="#Boolean">Booléen</a> (True ou False).</p>
+   <table>
+      <thead>
+         <tr>
+            <th style="text-align:center">Test</th>
+            <th style="text-align:center">Console</th>
+            <th style="text-align:center">Utilisation</th>
+            <th style="text-align:center">Résultat</th>
+            <th style="text-align:center">Type</th>
+            <th>Question posée</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td style="text-align:center">=</td>
+            <td style="text-align:center">==</td>
+            <td style="text-align:center">20 == 3</td>
+            <td style="text-align:center">False</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 = 3 ?</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">$\neq$</td>
+            <td style="text-align:center">!=</td>
+            <td style="text-align:center">20 != 3</td>
+            <td style="text-align:center">True</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 $\neq$ 3 ?</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">&lt;</td>
+            <td style="text-align:center">==</td>
+            <td style="text-align:center">20 &lt; 3</td>
+            <td style="text-align:center">False</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 &lt; 3 ?</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">$\leqslant$</td>
+            <td style="text-align:center">&lt;=</td>
+            <td style="text-align:center">20 &lt;= 3</td>
+            <td style="text-align:center">False</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 $\leqslant$ 3 ?</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">&gt;</td>
+            <td style="text-align:center">&gt;</td>
+            <td style="text-align:center">20 &gt; 3</td>
+            <td style="text-align:center">True</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 &gt; 3 ?</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">$\geqslant$</td>
+            <td style="text-align:center">&gt;=</td>
+            <td style="text-align:center">20 &gt;= 3</td>
+            <td style="text-align:center">True</td>
+            <td style="text-align:center">bool</td>
+            <td>Est-ce que 20 $\geqslant$ 3 ?</td>
+         </tr>
+      </tbody>
+   </table>
+   <hr>
+   <h3 id="claculs-sur-les-nombres">Claculs sur les nombres</h3>
+   <p>Un ordinateur est capable d’effectuer différentes opérations mathématiques avec des nombres entiers et décimaux
+      mais également avec d’autres types de données comme des chaînes de caractères. </p>
+   <p>L’ensemble des exemples présentés par la suite sont à saisir dans la console Python. Pour en afficher le résultat,
+      on utilise la fonction <strong>print()</strong>. </p>
+   <p>Le type caractérise la nature de la valeur : il peut s’agir d’un nombre entier , d’un nombre en virgule flottante,
+      d’une chaîne de caractères ou d’un booléen.</p>
+   <table>
+      <thead>
+         <tr>
+            <th style="text-align:center">Opérateur</th>
+            <th style="text-align:center">Console</th>
+            <th style="text-align:center">Utilisation</th>
+            <th style="text-align:center">Résultat</th>
+            <th style="text-align:center">Type</th>
+            <th>Explication</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td style="text-align:center">+</td>
+            <td style="text-align:center">+</td>
+            <td style="text-align:center">20 + 3</td>
+            <td style="text-align:center">23</td>
+            <td style="text-align:center">int</td>
+            <td>Addition de 20 et 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">-</td>
+            <td style="text-align:center">-</td>
+            <td style="text-align:center">20 - 3</td>
+            <td style="text-align:center">17</td>
+            <td style="text-align:center">int</td>
+            <td>Soustraction de 20 et 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">x</td>
+            <td style="text-align:center">*</td>
+            <td style="text-align:center">20 * 3</td>
+            <td style="text-align:center">60</td>
+            <td style="text-align:center">int</td>
+            <td>Multiplication de 20 et 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">%</td>
+            <td style="text-align:center">/</td>
+            <td style="text-align:center">20 / 3</td>
+            <td style="text-align:center">6.66667</td>
+            <td style="text-align:center">float</td>
+            <td>Division de 20 et 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center"></td>
+            <td style="text-align:center">//</td>
+            <td style="text-align:center">20 // 3</td>
+            <td style="text-align:center">6</td>
+            <td style="text-align:center">int</td>
+            <td>Partie entière de la division euclidienne de 20 par 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">modulo</td>
+            <td style="text-align:center">%</td>
+            <td style="text-align:center">20 % 3</td>
+            <td style="text-align:center">2</td>
+            <td style="text-align:center">int</td>
+            <td>Reste de la division euclidienne de 20 par 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">^ (puissance)</td>
+            <td style="text-align:center">**</td>
+            <td style="text-align:center">2 ** 3</td>
+            <td style="text-align:center">8</td>
+            <td style="text-align:center">int</td>
+            <td>2 puissance 3</td>
+         </tr>
+      </tbody>
+   </table>
+   <h4 id="op-rateurs-d-affectation">Opérateurs d&#39;affectation</h4>
+   <p>Les opérateurs d&#39;affectation sont utilisés en <strong>Python</strong> pour rendre le code plus aéré et
+      lisible. Il consiste à remplacer la modification classique d&#39;une variable par un affectation plus compacte.
+   </p>
+   <table>
+      <thead>
+         <tr>
+            <th style="text-align:center">modification classique</th>
+            <th style="text-align:center">Opérateurs d&#39;affectation</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td style="text-align:center">a = a + 3</td>
+            <td style="text-align:center">a += 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a - 3</td>
+            <td style="text-align:center">a -= 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a * 3</td>
+            <td style="text-align:center">a *= 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a / 3</td>
+            <td style="text-align:center">a /= 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a // 3</td>
+            <td style="text-align:center">a //= 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a % 3</td>
+            <td style="text-align:center">a %= 3</td>
+         </tr>
+         <tr>
+            <td style="text-align:center">a = a ** 3</td>
+            <td style="text-align:center">a **= 3</td>
+         </tr>
+      </tbody>
+   </table>
+   <hr>
+   <h3 id="op-rations-sur-les-chaines-de-caract-res">Opérations sur les chaines de caractères</h3>
+   <p>On peut utiliser un + entre deux chaines de caractères pour les mettre à la suite :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span> a = <span class="hljs-string">'Cours '</span>
+<span class="hljs-meta">&gt;&gt;</span> b = <span class="hljs-string">'Cyrano'</span>
+<span class="hljs-meta">&gt;&gt;</span> c = a + b
+<span class="hljs-meta">&gt;&gt;</span> print(c)
+<span class="hljs-string">'Cours Cyrano'</span>
+</code></pre>
+   <blockquote>
+      <p>💡 la chaine de caractère <em>a</em> se termine par un espace</p>
+   </blockquote>
+   <p>on peut aussi utiliser le signe * pour répéter un certain nombre de fois une chaine de caractères :</p>
+   <pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span> <span class="hljs-string">'cous'</span> * <span class="hljs-number">2</span>
+<span class="hljs-string">'couscous'</span>
+</code></pre>
+</body>
+
+</html>
