@@ -1,0 +1,101 @@
+<h2 id="boucles-et-conditions">Boucles et conditions</h2>
+<p>On sait maintenant travailler sur des variables, leur associer des valeurs, les convertir et faire des calculs avec.
+Pour créer des programmes il ne reste plus qu&#39;à répéter ces action et c&#39;est là qu&#39;interviennent les boucles.</p>
+<p>Il existe deux types de boucles, les boucles <strong>while</strong> et les boucles <strong>for</strong>. La boucle while s&#39;exécute tant que sa <strong>condition</strong> est vrai (Booléen True). La boucle for s&#39;exécute pour un nombre d&#39;itérations <strong>connues à l&#39;avance</strong>.</p>
+<p>Dans les deux cas l&#39;<strong>indentation</strong> est primordiale !
+Tout le code indenté (décalé d&#39;un cran vers la droite avec la touche tab) sera exécuté dans la boucle, il faut redescendre l&#39;indentation pour sortir de la boucle.</p>
+<h3 id="la-boucle-while">La boucle while</h3>
+<p>La boucle while prend en argument une condition et exécute le code tant que cette condition est vraie (True : Boolean)</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-title">while</span><span class="hljs-params">(condition)</span></span>:
+    <span class="hljs-selector-tag">code</span> à exécuter dans la boucle
+<span class="hljs-selector-tag">code</span> hors de la boucle
+</code></pre>
+<blockquote>
+<p>:warning: Si la condition est toujours vrai cela génère une boucle infinie. Pour éviter la surchauffe de votre PC. On peut utiliser la commande <code>ctrl+c</code> pour interrompre le processus.</p>
+</blockquote>
+<pre><code><span class="hljs-selector-tag">i</span> = <span class="hljs-number">0</span>
+while <span class="hljs-selector-tag">i</span> &lt; <span class="hljs-number">3</span>:
+    print(i)
+    <span class="hljs-selector-tag">i</span> += <span class="hljs-number">1</span>
+</code></pre><pre><code class="lang-python"><span class="hljs-number">0</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+</code></pre>
+<blockquote>
+<p>:warning: oublier la ligne <code>i += 1</code> va faire que i &lt; 3 sera toujours vrai et génèrera donc une boucle infinie</p>
+</blockquote>
+<hr>
+<h3 id="la-boucle-for">La boucle for</h3>
+<p>La boucle <em>for</em> permet de parcourir un objet.</p>
+<p>En l&#39;utilisant avec <code>range(D,F,P)</code> cela va parcourir l&#39;intervalle de D à F (exclu) par pas de P :</p>
+<blockquote>
+<p>range(1,6,2) va générer l&#39;intervalle comprenant [1, 3, 5]</p>
+</blockquote>
+<pre><code class="lang-python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):
+    <span class="hljs-built_in">print</span>(i)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-number">0</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+</code></pre>
+<p>Si l&#39;objet est une liste elle va être parcourue et la variable va prendre la valeur des éléments de cette liste tour-à-tour :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">for</span> <span class="hljs-keyword">element</span> <span class="hljs-keyword">in</span> [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>]:
+    print(<span class="hljs-keyword">element</span>)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-symbol">'a</span>'
+<span class="hljs-symbol">'b</span>'
+<span class="hljs-symbol">'c</span>'
+<span class="hljs-symbol">'d</span>'
+</code></pre>
+<p> et cela fonctionne exactement de la même manière avec une chaine de caractères :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">for</span> <span class="hljs-keyword">element</span> <span class="hljs-keyword">in</span> [<span class="hljs-string">"abcd"</span>]:
+    print(<span class="hljs-keyword">element</span>)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-symbol">'a</span>'
+<span class="hljs-symbol">'b</span>'
+<span class="hljs-symbol">'c</span>'
+<span class="hljs-symbol">'d</span>'
+</code></pre>
+<hr>
+<h3 id="les-conditions-if-">Les conditions (if)</h3>
+<p>les conditions permettent d&#39;exécuter un code en fonctiondu résultat d&#39;un test. Elle se définie avec une ligne commençant par <strong>if</strong>, se terminant avec <code>:</code> et comportant un test :</p>
+<pre><code class="lang-python"><span class="hljs-selector-tag">a</span> = <span class="hljs-number">4</span>
+<span class="hljs-keyword">if</span> <span class="hljs-selector-tag">a</span> &gt; <span class="hljs-number">3</span>:
+    print(<span class="hljs-string">"a est strictement supérieur à 3"</span>)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-comment">"a est strictement supérieur à 3"</span>
+</code></pre>
+<p>Dans cet exemple on test si notre variable a est supérieur à 3. Le test <code>a &gt; 3</code> renvoie <code>True</code>, la condition étant vraie ce qui est indenté s&#39;exécute. On peut ajouter un <strong>else</strong> qui s&#39;exécute si la condition est fausse :</p>
+<pre><code class="lang-python"><span class="hljs-selector-tag">a</span> = <span class="hljs-number">4</span>
+<span class="hljs-keyword">if</span> <span class="hljs-selector-tag">a</span> &gt; <span class="hljs-number">3</span>:
+    print(<span class="hljs-string">"a est strictement supérieur à 3"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"a n'est pas strictement supérieur à 3"</span>)
+</code></pre>
+<p>ici on peut traduire tout ça en français :
+<em>Si a est strictement supérieur à 3, on affiche la première phrase, sinon on affiche la seconde phrase</em></p>
+<p>Il existe un dernier mot-clé : <code>elif</code>, qui est la contraction de <em>else</em> et <em>if</em>
+Il permet de ne pas imbriquer de nombreuses conditions.</p>
+<p>Voici quelque-chose à ne pas faire :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> <span class="hljs-selector-tag">a</span> &gt; <span class="hljs-number">3</span>:
+    print(<span class="hljs-string">"a est strictement supérieur à 3"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">if</span> <span class="hljs-selector-tag">a</span> &lt; <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"a est un nombre négatif"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">"a est compris entre 0 et 3 inclus"</span>)
+</code></pre>
+<p>il faut préférer écrire :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> a &gt; 3:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"a est strictement supérieur à 3"</span>)
+<span class="hljs-keyword">elif</span> a &lt; 0:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"a est un nombre négatif"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"a est compris entre 0 et 3 inclus"</span>)
+</code></pre>
+<p>Ici on peut traduire ça par :
+<em>Si a est strictement supérieur à 3, on affiche la première phrase, sinon si a est strictement inférieu à 0 on affiche la deuxième phrase sinon on affiche la troisième phrase</em></p>
+<blockquote>
+<p>:warning: Il est primordiale de faire très attention aux indentations pour les boucles et les conditions, c&#39;est l&#39;une des plus grande source d&#39;erreurs, avec l&#39;oublie des &#39;:&#39; et l&#39;utilisation du &#39;=\=&#39;</p>
+</blockquote>
