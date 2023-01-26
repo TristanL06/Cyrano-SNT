@@ -1,3 +1,5 @@
+# Chapitre 3 : Fonctions et procédures
+
 Pour effectuer une tâche il faut parfois répéter plusieurs **instructions**. Si on doit refaire la même tâche ailleurs dans le code on remarque que certains blocs vont être répétés régulièrement. Pour améliorer la **lisibilité** du code et réduire sa taille on peut alors utiliser des **procédures** ou des **fonctions** que l'on va **définir** une fois et que l'on va **appeler** lorsque l'on aura besoin d'exécuter les instructions qu'elles contiennent.
 
 ### Les instructions
