@@ -1,0 +1,95 @@
+<h1 id="programmation-orient-e-object-poo-">Programmation Orientée Object (POO)</h1>
+<p>La <strong>Programmation Orientée Object</strong> permet de créer un outil qui aura des <strong>attributs</strong> (variables) et des <strong>méthodes</strong> (foctions).<br>Ce <strong>paradigme</strong> a pour avantages de pouvoir regrouper dans une seule entité les données et fonctions utiles et de cacher les détails de l&#39;exécution à l&#39;utilisateur, ce qui permet l&#39;<strong>encapsulation</strong>.</p>
+<p>Comme la plupart des langages, Python utilise le concept de <strong>classe</strong>. Une classe est tout simplement une définition d&#39;un object, un moule qui va permettre de construire les objets que l&#39;on va utiliser.<br>Pour écrire une Classe en Python il suffit d&#39;utiliser le mot-clé <code>class</code> et de définir un <code>__init__</code> :</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cercle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, Cx, Cy, r)</span></span>:
+        <span class="hljs-keyword">self</span>.centre = (Cx, Cy)
+        <span class="hljs-keyword">self</span>.rayon = r
+</code></pre>
+<p>Ici on définit une classe Cercle qui définit un cercle dans le plan avec les coordonnées x et y de son centre, ainsi que son rayon. </p>
+<blockquote>
+<p>Le premier paramètre de la méthode __init__ est nommé &#39;self&#39; par convention, cela représente l&#39;objet utilisé.</p>
+</blockquote>
+<p>La syntaxe <code>self.rayon = r</code> permet de créer un nouvel attribut <code>rayon</code> pour l&#39;object <code>self</code> et de lui donner pour valeur initiale la valeur du paramètre <code>r</code>.<br>Voici l&#39;utilisation que l&#39;on peut faire de cet object actuellement :</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; c = Cercle(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.centre
+(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.rayon
+<span class="hljs-number">5</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.rayon = <span class="hljs-number">2</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.rayon
+<span class="hljs-number">2</span>
+</code></pre>
+<p>On peut ajouter à notre classe Cercle un attribut <code>circonférence</code> :</p>
+<pre><code class="lang-python">from math import pi
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cercle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, Cx, Cy, r)</span></span>:
+        <span class="hljs-keyword">self</span>.centre = (Cx, Cy)
+        <span class="hljs-keyword">self</span>.rayon = r
+        <span class="hljs-keyword">self</span>.circonférence = <span class="hljs-number">2</span>*pi*r
+</code></pre>
+<p>Et demander la circonférence de l&#39;object c1 créé :</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;</span>&gt; c1 = Cercle(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; c1.circonférence
+<span class="hljs-number">3.1514926</span>
+</code></pre>
+<h4 id="les-m-thodes">Les méthodes</h4>
+<p>Les <strong>méthodes</strong> sont des <strong>fonctions internes</strong> aux objects permettant d&#39;exécuter du code uniquement lorsque c&#39;est nécessaire, pour ne pas tout exécuter lors de la création de l&#39;object (dans le <code>__init__</code>).<br>Dans notre exemple du cercle on peut imaginer une méthode <code>distance</code> qui prend en argument un autre object <em>Cercle</em> et qui renvoie le flottant de la distance entre les centres des cercles :</p>
+<pre><code class="lang-python">from math import pi
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cercle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, Cx, Cy, r)</span></span>:
+        <span class="hljs-keyword">self</span>.centre = (Cx, Cy)
+        <span class="hljs-keyword">self</span>.rayon = r
+        <span class="hljs-keyword">self</span>.circonférence = <span class="hljs-number">2</span>*pi*r
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, cercle2)</span></span>:
+        x1, y1 = <span class="hljs-keyword">self</span>.centre
+        x2, y2 = cercle2.centre
+        <span class="hljs-keyword">return</span> ( (x1-x2)**<span class="hljs-number">2</span> + (y1-y2)**<span class="hljs-number">2</span> )**<span class="hljs-number">0</span>.<span class="hljs-number">5</span>
+</code></pre>
+<p>On peut maintenant ajouter la méthode <code>touche</code> qui renvoie un booléen (True si les deux cercles se touchent, False sinon) :</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cercle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, Cx, Cy, r)</span></span>:
+        <span class="hljs-keyword">self</span>.centre = (Cx, Cy)
+        <span class="hljs-keyword">self</span>.rayon = r
+        <span class="hljs-keyword">self</span>.circonférence = <span class="hljs-number">2</span>*pi*r
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, cercle2)</span></span>:
+        x1, y1 = <span class="hljs-keyword">self</span>.centre
+        x2, y2 = cercle2.centre
+        <span class="hljs-keyword">return</span> ( (x1-x2)**<span class="hljs-number">2</span> + (y1-y2)**<span class="hljs-number">2</span> )**<span class="hljs-number">0</span>.<span class="hljs-number">5</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">touche</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, cercle2)</span></span>:
+        distance = <span class="hljs-keyword">self</span>.distance(cercle2)
+        <span class="hljs-keyword">if</span> distance &lt; <span class="hljs-keyword">self</span>.rayon + cercle2.<span class="hljs-symbol">rayon:</span> <span class="hljs-comment">#Si les deux cercles sont plus éloignés que la somme de leurs rayons ils ne se touchent pas</span>
+            <span class="hljs-keyword">if</span> distance + min(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon) &gt; max(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon): <span class="hljs-comment"># Gère si on a un cercle contenu dans un autre</span>
+                <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+</code></pre>
+<p>On crée donc 3 cercles pour tester notre classe :</p>
+<ul>
+<li>Un cercle de centre (0,0) et de rayon 1</li>
+<li>Un cercle de centre (-2,1) et de rayon 1</li>
+<li>Un cercle de centre (2,3) et de rayon 3</li>
+<li>Un cercle de centre (2,3) et de rayon 2<pre><code class="lang-python">c1 = Cercle(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+c2 = Cercle(<span class="hljs-number">-2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+c3 = Cercle(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)
+c4 = Cercle(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)
+</code></pre>
+<em>on a 4 <strong>objects</strong> créés à partir de la classe Cercle, qui ont chacun des attribus différents mais avec lesquels on peut intéragir de manière standardisée.</em>
+<img src="https://raw.githubusercontent.com/TristanL06/Cyrano-NSI/main/Chapitre%203%20%3A%20POO/ressources/image.png" alt="quatre cercles"></li>
+</ul>
+<p>Dans la console on peut donc exécuter :</p>
+<pre><code class="lang-python">&gt;&gt;&gt; <span class="hljs-built_in">c1</span>.distance(<span class="hljs-built_in">c2</span>)
+<span class="hljs-number">2</span>.<span class="hljs-number">23606797749979</span>
+&gt;&gt;&gt; <span class="hljs-built_in">c3</span>.distance(<span class="hljs-built_in">c4</span>)
+<span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+&gt;&gt;&gt; <span class="hljs-built_in">c1</span>.touche(<span class="hljs-built_in">c2</span>)
+<span class="hljs-symbol">False</span>
+&gt;&gt;&gt; <span class="hljs-built_in">c1</span>.touche(<span class="hljs-built_in">c3</span>)
+<span class="hljs-symbol">True</span>
+&gt;&gt;&gt; <span class="hljs-built_in">c3</span>.touche(<span class="hljs-built_in">c4</span>)
+<span class="hljs-symbol">False</span>
+</code></pre>
