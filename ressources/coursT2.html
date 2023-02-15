@@ -69,13 +69,58 @@ $\forall x \not = 0, n &gt; 0 : x^0 = 1$ et $x^n = n \times x^{n-1}$</p>
     retour de <span class="hljs-number">8</span>
 </code></pre>
 <p>Si on suit l&#39;indentation on voit clairement une phase de descente des appels récursifs (tous les appels en cascade) et une phase de remontée (tous les retour). Cela est dû au fait que l&#39;on effectue un calcul sur l&#39;appel de la fonction : <strong>x * </strong> puissance(x, n-1).</p>
-<p>On peut également représenter ces étapes sous forme de tableau :
-|  0  |  1  |  2  |  3  |  4  |  5  |  6  |
-| --: | --: | --: | --: | --: | --: | --: |
-|     |     |     | ==1== 0 |     |     |     |
-|     |     |   1 |   1 | ==2== 1 |     |     |
-|     |   2 |   2 |   2 |   2 | ==4== 2 |     |
-|   3 |   3 |   3 |   3 |   3 |   3 | ==8== 3 |</p>
+<p>On peut également représenter ces étapes sous forme de tableau :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">0</th>
+<th style="text-align:right">1</th>
+<th style="text-align:right">2</th>
+<th style="text-align:right">3</th>
+<th style="text-align:right">4</th>
+<th style="text-align:right">5</th>
+<th style="text-align:right">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right">==1== 0</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">==2== 1</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">==4== 2</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">==8== 3</td>
+</tr>
+</tbody>
+</table>
 <p>==Toute notion de fonction terminale et non terminale est hors programme==
 ==** Début du hors programme **==
 La présence de cette phase de remontée fait que la fonction est <strong>non terminale</strong>.
@@ -92,15 +137,44 @@ Pour la rendre <strong>terminale</strong>, la condition d&#39;arrêt doit renvoy
             appel de puissance(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">8</span>)
                 retour de <span class="hljs-number">8</span>
 </code></pre>
-<p>On voit bien qu&#39;il n&#39;y a pas de phase de remontée des appels récurcifs. Pareil avec le tableau :  
-|  0  |  1  |  2  |  3  |
-| --: | --: | --: | --: |
-|     |     |     | ==8== 0 |
-|     |     | ==4== 1 |   1 |
-|     | ==2== 2 |   2 |   2 |
-| ==1== 3 |   3 |   3 |   3 |  
-
-==** fin du hors programme **==</p>
+<p>On voit bien qu&#39;il n&#39;y a pas de phase de remontée des appels récurcifs. Pareil avec le tableau :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">0</th>
+<th style="text-align:right">1</th>
+<th style="text-align:right">2</th>
+<th style="text-align:right">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right">==8== 0</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right">==4== 1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:right">==2== 2</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">==1== 3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+</tr>
+</tbody>
+</table>
+<p>==** fin du hors programme **==</p>
 <h2 id="recherche-r-cursive-dans-un-r-pertoire">Recherche récursive dans un répertoire</h2>
 <p>La récursivité est très utilisée pour fouiller dans des dossiers. Pour cela on peut utiliser la bibliothèque <code>os</code> en python. On commence donc par l&#39;importer avec la ligne <code>import os</code>.</p>
 <p>Voici quelques fonctions utiles :</p>
