@@ -1,0 +1,62 @@
+<h1 id="chapitre-5-les-arbres">Chapitre 5 : Les arbres</h1>
+<p>Les arbres ont de très nombreuses applications, y compris en mathématiques, dans l&#39;industrie ou dans tous les systèmes d&#39;organisation de fichiers.</p>
+<p><img src="https://mermaid.ink/img/pako:eNpN0U1vhCAQBuC_YubEJprsbnvyVlf349BTe2q4TBRXExWD0KYx_veOChROPJkXGGCGUlYCUngqHJvoM-dDROONsePxcNiRMXbyuBBODjnh7FAwdvaxK8HHbgQfuxNeHB6EVwd7dJQkSZSFuISwHWYbihBX29SGW4h7iAfE0AvVY1vRvee1xEE3ohccUppWokbTaQ7xXqo7-VM2qPRanm2rUBr1bRdkOLUTh7Wy8GGh7c1YoRZF1WqpIK2xm0QMaLT8-B1KSLUywoXyFunpe58acfiS8t9i2-R9_6Ttr5Y_zwpyzA?type=png" alt="arbre"><br><em>Ici on peut voir un arbre contenant 9 noeuds.</em></p>
+<p>les arbres <strong>binaires</strong> sont un exemple particulier d&#39;arbre. Comme l&#39;indique leur nom les arbres binaires ont au plus deux fils à chaque noeud. Et chaque noeud a exactement un père (sauf le noeud racine). Ils sont également orientés, l&#39;ordre gauche/droite des fils est donc important.</p>
+<p><img src="https://mermaid.ink/img/pako:eNpNULsOgzAM_JXIUyvBD7AV6NipnaosbmIgEiQoj1YV4t8bCLT15Luz72RPIIwkKKC1OHbsVnPNYp0O2lCQx4TKQ6N6x1oMoqONqxInrVF-57Zdluc5K_9BlQBkMJAdUMkYOC0cB9_RQByK2EpqMPSeQ5akpjcv0aH1izxtESCCfW4LD3TKcViUmes52odRoqezVN5YKBrsHWWAwZvrWwsovA20D9UK483Dd2pEfTfmh2k1uaTvrE-aP3t4Xac?type=png" alt=""></p>
+<h2 id="-d-finitions">📖 Définitions</h2>
+<h3 id="-noeud-">💡 Noeud :</h3>
+<p>Entité ayant exactement un noeud père (sauf la racine) et pouvant avoir au plus 2 noeuds fils.</p>
+<h3 id="-racine-">💡 Racine :</h3>
+<p>Noeud le plus haut de l&#39;arbre, il n&#39;admet aucun parent</p>
+<h3 id="-taille-">💡Taille :</h3>
+<p>Nombre de noeuds d&#39;un arbre</p>
+<h3 id="-profondeur-">💡Profondeur :</h3>
+<p>Longueur du chemin le plus court vers la racine (la racine ayant une profondeur de 0)</p>
+<h3 id="-hauteur-">💡Hauteur :</h3>
+<p>Profondeur du noeud le plus profond (un arbre ayant uniquement une racine aura donc une profondeur de 0)</p>
+<h3 id="feuille-">Feuille :</h3>
+<p>Noeud sans fils</p>
+<h3 id="arbre-binaire-complet-gauche-">Arbre binaire complet à gauche :</h3>
+<p>Arbre binaire dont tous les étages sont complets et dont toutes les feuilles sont tassées à gauche</p>
+<h3 id="valeur-tiquet-e-">Valeur étiquetée :</h3>
+<p>Valeur éssociée à un noeud.</p>
+<h2 id="parcours-des-arbres">Parcours des arbres</h2>
+<p>Il y a 4 manières de parcourir un arbre binaire :</p>
+<ul>
+<li>Parcours en largeur</li>
+<li>Parcours en profondeur <strong>préfixe</strong></li>
+<li>Parcours en profondeur <strong>infixe</strong></li>
+<li>Parcours en profondeur <strong>postfix</strong></li>
+</ul>
+<p>Dans la suite nous allons utiliser cet arbre comme exemple :
+<img src="https://mermaid.ink/img/pako:eNpNkUFrhDAQhf9KmLKQBYXVrV3wVld3Tz21p5JL0KTKRiMxbinif2_M2K455X3z5mXCTFDqSkAKX4b3NfnIWUfceaX0cNjvyW4XIcgojRDECM4OxB4cEeSUxuh4RlA4EHmQILg4gC0vCK4OHD04IVgfJ2EYkmwrzusUXuRbUazjeHHZiusjs1R8GHIhib4R2SiVPiUygQBaYVreVO7702JjYGvRCgapu1ZC8lFZBgGWpNLfZc2NXcrTmg3laO5rQ8aHZmCwVGbWzS5-7CtuRVE1VhtIJVeDCICPVr__dCWk1oziz5Q33G2g_Xf1vPvU-qGFD3nDXfmVzb8DYnYa?type=png" alt="arbre démo"></p>
+<h3 id="le-parcours-en-largeur">Le parcours en largeur</h3>
+<p>l&#39;arbre est parcourus étage par étage, la racine d&#39;abord, puis les fils de la racines, puis les fils suivants...<br>À chaque étage les noeuds sont parcourus de gauche à droite :<br><img src="https://raw.githubusercontent.com/TristanL06/Cyrano-NSI/main/Chapitre%205%20%3A%20Arbres%20binaires/ressources/largeur.gif" alt="arbre largeur"></p>
+<p>On obtient donc [00, 10, 12, 20, 21, 22, 23] lors que l&#39;on parcours de cet arbre <strong>en largeur d&#39;abord</strong></p>
+<h3 id="le-parcours-pr-fixe">Le parcours Préfixe</h3>
+<p>L&#39;arbre est parcourus selon l&#39;ordre <em>noeud</em>, <em>fils gauche</em>, <em>fils droit</em>
+<img src="https://raw.githubusercontent.com/TristanL06/Cyrano-NSI/main/Chapitre%205%20%3A%20Arbres%20binaires/ressources/préfix.gif" alt="arbre prefixe"></p>
+<p>On obtient donc [00, 10, 20, 21, 12, 22, 23] lors que l&#39;on parcours de cet arbre de manière <strong>préfixe</strong></p>
+<h3 id="le-parcours-infixe">Le parcours Infixe</h3>
+<p>L&#39;arbre est parcourus selon l&#39;ordre <em>fils gauche</em>, <em>noeud</em>, <em>fils droit</em>
+<img src="https://raw.githubusercontent.com/TristanL06/Cyrano-NSI/main/Chapitre%205%20%3A%20Arbres%20binaires/ressources/infixe.gif" alt="arbre prefixe"></p>
+<p>On obtient donc [20, 10, 21, 00, 22, 12, 23] lors que l&#39;on parcours de cet arbre de manière <strong>infixe</strong></p>
+<h3 id="le-parcours-postfixe">Le parcours Postfixe</h3>
+<p>L&#39;arbre est parcourus selon l&#39;ordre <em>fils gauche</em>, <em>fils droit</em>, <em>noeud</em>
+<img src="https://raw.githubusercontent.com/TristanL06/Cyrano-NSI/main/Chapitre%205%20%3A%20Arbres%20binaires/ressources/postfix.gif" alt="arbre prefixe"></p>
+<p>On obtient donc [20, 21, 10, 22, 23, 12, 00] lors que l&#39;on parcours de cet arbre de manière <strong>postfixe</strong></p>
+<p>Résumé des méthodes de parcours des arbres :
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Sorted_binary_tree_ALL.svg/562px-Sorted_binary_tree_ALL.svg.png" alt=""></p>
+<h2 id="cas-particuliers-des-arbres">Cas Particuliers des arbres</h2>
+<h3 id="les-tas">Les tas</h3>
+<p>Un <strong>tas-max</strong> est un arbre binaire complet à gauche dont chaque racine a une valeur étiquetée supérieure à celles de ses fils.  </p>
+<p>Un <strong>tas-min</strong> est un arbre binaire complet à gauche dont chaque racine a une valeur étiquetée inférieure à celles de ses fils.  </p>
+<p>L&#39;arbre pris en exemple plus haut est un tas-min.</p>
+<h3 id="les-arbres-binaires-de-recherche">Les arbres binaires de recherche</h3>
+<p>Les arbres binaires de recherche sont des arbres binaires étiquetés avec des clés tel que :</p>
+<ul>
+<li>les clés du sous-arbre de gauche sont inférieures ou égales à la clé de la racine,</li>
+<li>les clés du sous-arbre de gauche sont strictement supérieures à la clé de la racine,</li>
+<li>les deux sous-arbres sont eux-même des arbres binaires de recherche.</li>
+</ul>
+<p>Cette structure d&#39;arbres permet de diminuer la complexité temporelle de la recherche d&#39;un élément.</p>
