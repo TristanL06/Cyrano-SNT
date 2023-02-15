@@ -63,8 +63,10 @@
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">touche</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, cercle2)</span></span>:
         distance = <span class="hljs-keyword">self</span>.distance(cercle2)
-        <span class="hljs-keyword">if</span> distance &lt; <span class="hljs-keyword">self</span>.rayon + cercle2.<span class="hljs-symbol">rayon:</span> <span class="hljs-comment">#Si les deux cercles sont plus éloignés que la somme de leurs rayons ils ne se touchent pas</span>
-            <span class="hljs-keyword">if</span> distance + min(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon) &gt; max(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon): <span class="hljs-comment"># Gère si on a un cercle contenu dans un autre</span>
+        <span class="hljs-comment">#Si les deux cercles sont plus éloignés que la somme de leurs rayons ils ne se touchent pas</span>
+        <span class="hljs-keyword">if</span> distance &lt; <span class="hljs-keyword">self</span>.rayon + cercle2.<span class="hljs-symbol">rayon:</span>
+            <span class="hljs-comment"># Gère si on a un cercle contenu dans un autre</span>
+            <span class="hljs-keyword">if</span> distance + min(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon) &gt; max(<span class="hljs-keyword">self</span>.rayon,cercle2.rayon):
                 <span class="hljs-keyword">return</span> True
         <span class="hljs-keyword">return</span> False
 </code></pre>
