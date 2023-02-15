@@ -1,0 +1,487 @@
+<h1 id="chapitre-6-les-graphes">Chapitre 6 : Les graphes</h1>
+<p>Les graphes sont un autre outil de modélisation mathématique utilisé pour représenter des relations entre des objets. Ils ont de nombreuses applications, notamment en informatique, en réseaux, en transport et en sciences sociales.</p>
+<p><a href="https://www.kaggle.com/code/mmmarchetti/game-of-thrones-network-analysis"><img src="https://assets.datacamp.com/production/project_76/img/got_network.jpeg" alt="GOT personnages"></a>  <em>Ici on peut voir un graph représentant des relations entre des personnes.</em></p>
+<p><a href="https://www.youtube.com/watch?v=N61_kHXpaFA"><img src="https://pbs.twimg.com/media/E29MElYXEAMjCFa?format=jpg&amp;name=large" alt="Twitch relations"></a>  instantané de Twitch <a href="https://www.easyzoom.com/imageaccess/6ef899188b964819a95a286fcb422635"><em>zoomer dedans</em></a></p>
+<p>Il y a deux grandes familles de graphes, les graphes <strong>orientés</strong> et les graphes <strong>non orientés</strong>. Ils ont chacun des fonctions et des utilités différentes. Ils ont même un vocabulaire spécifique à chacun.<br>Pour expliquer rapidement la différence, dans un graphe orienté les liaison entre les sommets sont orientées dans une unique direction.</p>
+<h2 id="-les-graphes-non-orient-s">➖ Les graphes non orientés</h2>
+<p>Dans un graphe <strong>non orienté</strong> les <strong>sommets</strong> sont reliés par des <strong>arêtes</strong>. Si tous les sommets sont reliés entre eux le graphe est <strong>connexe</strong>. Une suite de sommets <strong>adjacents</strong> est une <strong>chaîne</strong> et une chaîne ayant pour point de départ et point d&#39;arrivée le même sommet est un <strong>cycle</strong>.  </p>
+<p>C&#39;est plus simple de visualiser sur un exemple :<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/6n-graf.svg/220px-6n-graf.svg.png" alt="graphe non orienté wikipédia">  </p>
+<p>Ici on a 1,2,3... qui sont des <strong>sommets</strong>. Ils sont reliés par des arêtes.<br>Tous les sommets sont reliés donc le graphe est <strong>connexe</strong>.<br>6-4-5-1-2 est une <strong>chaîne</strong> (une chaîne peut passer plusieurs fois par le même sommet).<br>5-1-2-5 est un <strong>cycle</strong>.</p>
+<h2 id="-les-graphes-orient-s">➡ Les graphes orientés</h2>
+<p>Dans un graphe <strong>orienté</strong> les <strong>sommets</strong> sont reliés par des <strong>arcs</strong>. Si tous les sommets sont reliés entre eux le graphe est <strong>connexe</strong> et s&#39;il est possible d&#39;aller de n&#39;importe quel sommet à n&#39;import quel autre, il est <strong>fortement connexe</strong>. Une suite de sommets <strong>adjacents</strong> est un <strong>chemin</strong> et un chemin ayant pour point de départ et point d&#39;arrivée le même sommet est un <strong>cycle</strong>.  </p>
+<p>Par exemple :
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Directed_graph_no_background.svg/220px-Directed_graph_no_background.svg.png" alt="graphe orienté wikipedia"><br>Ici on a 1,2,3,4 qui sont les <strong>sommets</strong> du graphe. Ils sont reliés par des <strong>arcs</strong>.<br>Tous les sommets sont reliés donc le graphe est <strong>connexe</strong>.<br>Tous les sommets ne sont pas atteignables depuis n&#39;importe que sommet (1 ne peut jamais être atteint), le graphe n&#39;est pas <strong>fortement connexe</strong>.<br>1-3-4 est un <strong>chemin</strong>.
+3-4-3 est un <strong>cycle</strong>.</p>
+<h4 id="il-existe-encore-quelques-d-finitions-conna-tre-">Il existe encore quelques définitions à connaître :</h4>
+<ul>
+<li>Graphe complet : graphe dans lequel tous les sommets sont reliés entre eux. 
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8SgZSVzZNwD2N7-8_I4y4V7xG6ZOJ7I-LZw&amp;usqp=CAU" alt=""></li>
+<li>Ordre d&#39;un graphe : nombre de sommets du graphe.</li>
+<li>Degré d&#39;un sommet : nombre d&#39;arrêtes reliées à un sommet.</li>
+<li>Sommets adjacents : deux sommets reliés par un une arête ou un arc, quel que soit l&#39;orientation de ce dernier</li>
+</ul>
+<h2 id="les-graphes-pond-r-s">Les graphes pondérés</h2>
+<p>Un graphe <strong>pondéré</strong> est un graphe dont chaque arête, ou chaque arc, a un <strong>poids</strong>.<br>Ce type de graphe permet d&#39;inclure des distances, des temps, des coûts dans les calculs de parcours du graphe.  </p>
+<p><img src="https://graphonline.ru/tmp/saved/lN/lNQLWfJKitBeXNHt.png" alt="graphe non pondéré"><br>Dans cet exemple, pour aller du sommet 3 au sommet 2 on peut utiliser les chaînes 3-5-2 ou 3-4-2. Ce sont les plus logiques car elles nous paraissent les plus courtes.<br>Maintenant si on rajoute comme poids des arêtes le temps de parcours :<br><img src="https://graphonline.ru/tmp/saved/eS/eSGGqrmTiXzloqaG.png" alt="Graphe pondéré"><br>On remarque immédiatement que le trajet le plus rapide est de passer par le haut du graphe avec la chaîne 3-1-0-2, qui a un poids de 3.<br>Les chaînes précédentes ont maintenant un poids total de 11 et 12 respectivement.</p>
+<h2 id="les-repr-sentations-des-graphes">Les représentations des graphes</h2>
+<h3 id="repr-sentation-matricielle">Représentation matricielle</h3>
+<p>On peut représenter un graphe par une matrice d&#39;adjacence. La matrice d&#39;adjacence permet de stocker toutes les informations, des orientations ainsi que des poids.<br>La matrice d&#39;adjacence du graphe<br><img src="https://graphonline.ru/tmp/saved/Ke/KewGgpQBxlUAOwCS.png" alt="graphe matriciel"><br>est représentable par la matrice d&#39;adjacence associée </p>
+<pre><code class="lang-txt"><span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, 
+<span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, 
+<span class="hljs-number">8</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>,
+</code></pre>
+<p>La case (<code>i;j</code>) (<code>i</code>ème ligne et <code>j</code>ème colonne) sera égale au nombre d’arêtes reliant la lettre de la <code>i</code>ème à la lettre de la <code>j</code>ème colonne.<br>Dans un graphe non orienté, comme il n’y a pas de sens, la matrice sera toujours symétrique !</p>
+<p>Calculs avec les matrices associées : 
+Soit M la matrice non pondérée associée à un graphe, la matrice M<sup>x</sup> donne le nombre de chemins allant de <code>i</code> à <code>j</code> en <code>x</code> étapes exactement.</p>
+<h2 id="algorithmes-sur-les-graphes">Algorithmes sur les graphes</h2>
+<h3 id="distance-entre-deux-sommets-">Distance entre deux sommets :</h3>
+<ul>
+<li>longueur de la plus courte chaîne qui les relie.</li>
+</ul>
+<h3 id="diam-tre-">Diamètre :</h3>
+<ul>
+<li>Longueur de la plus grande chaîne</li>
+</ul>
+<p>Il y a plusieurs algorithmes couramment utilisés pour travailler avec les graphes, notamment :</p>
+<h3 id="l-algorithme-de-dijkstra-">L&#39;algorithme de Dijkstra :</h3>
+<p>L’algorithme de Dijkstra permettant de déterminer le plus court chemin entre deux points dans un graphe.</p>
+<p>Pour regarder comment il fonctionne on va reprendre le graphe pondéré ci-dessus :<br><img src="https://graphonline.ru/tmp/saved/eS/eSGGqrmTiXzloqaG.png" alt="Graphe pondéré">  </p>
+<p>On commence par tracer un tableau dont chaque colonne représente un sommet : </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>On choisit ensuite notre sommet de départ (ici on prend 0 par exemple). On met alors 0 dans la colonne du sommet de départ et on tire un trait.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>On ajoute ensuite dans les colonnes de tous les sommets adjacents la distance pour y parvenir et la distance parcourue :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>On s&#39;occupe maintenant du sommet de poids le plus faible (en cas d&#39;égalité on choisit celui que l&#39;on veut, ici le 1). On tire un trait dans la colonne et on remplit les colonnes des adjacents :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2 - 1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Et on répète cette étape jusqu&#39;à avoir barré toutes les colonnes sauf une</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2 - 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>7 - 2</td>
+<td>8 - 2</td>
+</tr>
+</tbody>
+</table>
+<p>En partant de 3, les sommets adjacents sont 5 et 4, à une distance de 4 et 6, que l&#39;on ajoute donc à 2 et on garde le minimum de chaque :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2 - 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>6 - 2</td>
+<td>8 - 2</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td></td>
+<td>7 - 3</td>
+</tr>
+</tbody>
+</table>
+<p>Les sommets adjacents à 4 sont déjà complets, on trace donc le trait dans la colonne 4 :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2 - 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>6 - 2</td>
+<td>8 - 2</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td></td>
+<td>7 - 3</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td>\</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Et enfin le dernier sommet n&#39;a aucun adjacent non complet, on trace un trait dans la colonne 5 et on a terminé :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center">1 - 0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2 - 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>6 - 2</td>
+<td>8 - 2</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td></td>
+<td>7 - 3</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td>\</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">\</td>
+<td style="text-align:center"></td>
+<td>\</td>
+<td></td>
+<td>\</td>
+<td></td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Pour lire ce tableau il faut regarder la dernière ligne contenant des chiffres de chaque colonne. Par exemple ici <code>2 - 1</code> signifie que le plus court chemin pour atteindre le sommet 3 a un coût de 2 et passe par le sommet 1.<br>Si on regarde le sommet 1, <code>1 - 0</code> signifie que l&#39;atteindre a un coût de 1 en passant par 0.<br>En remontant donc la chaîne, le chemin le plus court entre 0 et 3 est la chaîne <code>0 - 1 - 3</code>.</p>
+</blockquote>
+<p>Cet algorithme donne les meilleurs chemins pour aller de l&#39;origine à tous les sommets du graphe, il est cependant assez coûteux en ressources car il test de très nombreuses possibilités et devient lent quand le graphe devient grand. Pour le fonctionnement réel des GPS il lui est préféré des algorithmes plus efficaces (A*) qui ne donnent cependant pas toujours le meilleur trajet.</p>
+<p>Il existe également les algorithmes suivants, qui sont plus compliqués et totalement hors-programme :</p>
+<ul>
+<li>Algorithme de Bellman-Ford pour détecter les cycles négatifs</li>
+<li>Algorithme de Kruskal pour trouver l&#39;arbre couvrant de poids minimum</li>
+<li>Algorithme de Prim pour trouver l&#39;arbre couvrant de poids minimum</li>
+<li>Algorithme de Floyd-Warshall pour résoudre le <strong>problème du plus court chemin</strong> entre tous les sommets.</li>
+</ul>
+<p>Il est important de noter que les graphes peuvent être très complexes et qu&#39;il peut y avoir plusieurs approches pour résoudre un même problème sur les graphes. Il est donc important de bien comprendre les concepts fondamentaux et les algorithmes pour pouvoir utiliser les graphes efficacement dans les différents domaines d&#39;application.</p>
+<hr>
+<p>Ressources :</p>
+<p>tableau du vocabulaire :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Graphes non orientés</th>
+<th style="text-align:center">Graphes Orientés</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">arêtes</td>
+<td style="text-align:center">arcs</td>
+</tr>
+<tr>
+<td style="text-align:center">chaîne</td>
+<td style="text-align:center">chemin</td>
+</tr>
+<tr>
+<td style="text-align:center">connexe</td>
+<td style="text-align:center">connexe</td>
+</tr>
+<tr>
+<td style="text-align:center">...</td>
+<td style="text-align:center">fortement connexe</td>
+</tr>
+<tr>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+</tr>
+<tr>
+<td style="text-align:center">Liste des voisins</td>
+<td style="text-align:center">Liste des successeurs</td>
+</tr>
+</tbody>
+</table>
+<p>Définitions supplémentaires :</p>
+<ul>
+<li>Chaîne <strong>élémentaire</strong> : chaine dans laquelle aucun sommet n’apparaît plus d’une fois.</li>
+<li>Chaîne <strong>simple</strong> : chaîne dans laquelle aucune arête n&#39;apparaît plus d&#39;une fois</li>
+<li>Boucle : arête d&#39;un sommet à lui-même</li>
+<li>Graphe <strong>simple</strong> : absence de boucle et au plus une arête entre deux sommets</li>
+<li>Multigraphe : Graphe non simple</li>
+<li>Chaîne <strong>Eulérienne</strong> : chaîne contenant une et une seule fois toutes les arêtes du graphe (les sommets peuvent apparaitre plusieurs fois).<blockquote>
+<p>Un graphe possède une chaîne eulérienne si et seulement si le nombre de sommets de degré impair est 0 ou 2</p>
+</blockquote>
+</li>
+<li>Nombre chromatique : nombre minimales de couleurs pour colorier chaque sommet sans que deux sommets adjacents aient la même couleur<blockquote>
+<p>Si le plus haut degré des sommets est noté x, alors le nombre chromatique est au plus égal à x + 1.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="particularit-s-eul-riennes-">Particularités eulériennes :</h2>
+<p>Une chaîne <strong>eulérienne</strong> est une chaîne contenant une et une seule fois toutes les arêtes du graphe (les sommets peuvent apparaitre plusieurs fois).<br>Un graphe possède une chaîne eulérienne si et seulement si le nombre de sommets de degré impair est 0 ou 2.<br>Si c&#39;est 0 la chaîne Eulérienne peut être démarrée par n&#39;importe quel sommet.<br>Si c&#39;est 2 la chaîne Eulérienne commence à l&#39;un des sommets de degré impaire et termine par l&#39;autre.  </p>
+<p>Un <strong>cycle eulérien</strong> est un cycle contenant une et une seule fois toutes les arêtes du graphe, il s&#39;agit donc d&#39;un chaîne eulérienne revenant à son point de départ.
+Un graphe possède un cycle eulérien si et seulement si tous les sommets sont de degré pair.</p>
+<h2 id="particularit-s-hamiltoniennes-">Particularités hamiltoniennes :</h2>
+<p>Les chaînes et cycles hamiltoniens sont analogues aux chaînes et cycles eulériens, mais concernent les sommets.</p>
+<p>Une <strong>chaîne</strong> est <strong>hamiltonienne</strong> si elle passe une et une seule fois par tous les sommets du graphe.  </p>
+<p>Un <strong>cycle</strong> est <strong>hamiltonien</strong> s’il passe une et une seule fois par tous les sommets du graphe (le sommet de départ et d&#39;arrivée et compté comme un unique sommet).</p>
