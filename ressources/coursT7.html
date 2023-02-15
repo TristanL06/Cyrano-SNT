@@ -1,0 +1,252 @@
+<h1 id="chapitre-7-bases-de-donn-es-et-sql">Chapitre 7 : Bases de données et SQL</h1>
+<p>Pour stocker des données la plupart du temps le format le plus optimisé est le <em>json</em>, en organisant les données sous forme de dictionnaires :</p>
+<pre><code class="lang-json">{
+ <span class="hljs-number">0</span>:{<span class="hljs-string">"nom"</span>:<span class="hljs-string">"Dubois"</span>, <span class="hljs-string">"adresse"</span>:<span class="hljs-string">"6 rue du port"</span>, <span class="hljs-string">"numéro"</span>:<span class="hljs-string">"06 60 06 60 06"</span>},
+ <span class="hljs-number">1</span>:{<span class="hljs-string">"nom"</span>:<span class="hljs-string">"Martin"</span>, <span class="hljs-string">"adresse"</span>:<span class="hljs-string">"47 avenue des champs"</span>, <span class="hljs-string">"numéro"</span>:<span class="hljs-string">"07 69 42 24 96"</span>},
+ <span class="hljs-number">2</span>:{<span class="hljs-string">"nom"</span>:<span class="hljs-string">"Cresson"</span>, <span class="hljs-string">"adresse"</span>:<span class="hljs-string">"57 rue de vienne"</span>, <span class="hljs-string">"numéro"</span>:<span class="hljs-string">"06 19 91 19 92"</span>}
+}
+</code></pre>
+<p>Il peut cependant être assez compliqué de récupérer les informations de manière efficace si le stockage n&#39;a pas été prévu pour ça (par exemple, récupérer tous les numéros de téléphone commençant par <code>07</code> est long à calculer avec un grand nombre de données), c&#39;est pour cela que le SQL a été inventé.</p>
+<p>SQL (Structured Query Language) est un langage informatique qui permet de gérer les données dans une <strong>base de données relationnelle</strong>. Il est utilisé pour créer, modifier et interroger des bases de données.</p>
+<p>Une base de données est un ensemble de données <strong>organisées</strong> de manière logique. Elle est généralement utilisée pour stocker des informations relatives à une entreprise, comme les clients, les produits, les commandes, etc. Il existe différents types de bases de données, mais les plus courantes sont les bases de données <strong>relationnelles</strong>, qui sont organisées sous forme de <strong>tables</strong>.</p>
+<p>Une table est une collection de données organisées sous forme de <strong>lignes</strong> (enregistrement) et de <strong>colonnes</strong> (attributs). Chaque ligne d&#39;une table correspond à un enregistrement, et chaque colonne correspond à un <strong>champ</strong>. Par exemple, dans une table &quot;clients&quot;, les colonnes pourraient être &quot;nom&quot;, &quot;adresse&quot; et &quot;numéro de téléphone&quot;, et chaque ligne représenterait un client différent.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">id</th>
+<th style="text-align:center">nom</th>
+<th style="text-align:center">adresse</th>
+<th style="text-align:center">numéro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">Dubois</td>
+<td style="text-align:center">6 rue du port</td>
+<td style="text-align:center">06 60 06 60 06</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Martin</td>
+<td style="text-align:center">47 avenue des champs</td>
+<td style="text-align:center">07 69 42 24 96</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Cresson</td>
+<td style="text-align:center">57 rue de vienne</td>
+<td style="text-align:center">06 19 91 19 92</td>
+</tr>
+</tbody>
+</table>
+<p><em>ici la table contient 3 enregistrements, on dit qu&#39;elle est de cardinal 3</em>  </p>
+<p>SQL permet de réaliser différentes opérations sur les tables d&#39;une base de données, comme :</p>
+<ul>
+<li>Sélectionner des données à partir d&#39;une ou plusieurs tables (SELECT)</li>
+<li>Insérer de nouvelles données dans une table (INSERT)</li>
+<li>Modifier des données existantes dans une table (UPDATE)</li>
+<li>Supprimer des données d&#39;une table (DELETE)</li>
+</ul>
+<p>Il est également possible de créer, supprimer et modifier les structures des tables avec les commandes SQL correspondantes :</p>
+<ul>
+<li>CREATE TABLE pour créer une nouvelle table</li>
+<li>ALTER TABLE pour modifier une table existante</li>
+<li>DROP TABLE pour supprimer une table</li>
+</ul>
+<p>On va maintenant créer une table de gestion d&#39;actifs financiers.</p>
+<p>On doit donc avoir une table avec des <code>idClient</code>, des <code>idStocks</code> et des <code>quantité</code> de stocks détenus. On considère que le tuple (idClient, idStock) est unique et constitue donc une clé.</p>
+<p><strong>comptes</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idClient</th>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">quantité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:center">122</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">47</td>
+</tr>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">57</td>
+</tr>
+</tbody>
+</table>
+<p>Pour obtenir toutes les données on peut faire la commande  </p>
+<pre><code class="lang-SQL"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> comptes
+</code></pre>
+<p>Pour avoir les Stocks et quantités concernant le client 104 on peut faire  </p>
+<pre><code class="lang-SQL"><span class="hljs-keyword">SELECT</span> idStock, quantité <span class="hljs-keyword">FROM</span> comptes
+<span class="hljs-keyword">WHERE</span> idClient = <span class="hljs-number">104</span>
+</code></pre>
+<p>Si on veut ordonner la réponse par ordre décroissant des quantités :  </p>
+<pre><code class="lang-SQL"><span class="hljs-keyword">SELECT</span> idStock, quantité <span class="hljs-keyword">FROM</span> comptes
+<span class="hljs-keyword">WHERE</span> idClient = <span class="hljs-number">104</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> quantité <span class="hljs-keyword">DESC</span>
+</code></pre>
+<p>Maintenant si on veut également stocker la valeur de chaque Stock on peut ajouter un attribut à la table :  </p>
+<p><strong>comptes</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idClient</th>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">quantité</th>
+<th style="text-align:center">valeurStock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">122</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">47</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">57</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<p>Et là on remarque que la valeur du Stock 97 va être stockée 2 fois. Et plus largement un stock a une valeur unique, il n&#39;y a donc aucun intérêt de le stocker à chaque client. Il devient donc intéressant de combiner plusieurs tables.</p>
+<hr>
+<h2 id="travailler-avec-plusieurs-tables">Travailler avec plusieurs tables</h2>
+<p>Il est également possible de créer des relations entre les tables grâce aux clés étrangères, qui permettent de lier des données d&#39;une table à des données d&#39;une autre table.</p>
+<p>On sépare donc la table précédente en deux :</p>
+<p><strong>comptes</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idClient</th>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">quantité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:center">122</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">47</td>
+</tr>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">57</td>
+</tr>
+</tbody>
+</table>
+<p><strong>bourse</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">valeurStock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">97</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">54</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<p>On voit bien ici que <code>idClient</code> est la clé primaire de la table <code>comptes</code> et <code>idStock</code> la clé primaire de la table <code>bourse</code>.
+Mais <code>idStock</code> est une clé secondaire de la table <code>comptes</code></p>
+<p>Maintenant on peut &quot;coller&quot; les deux tables pour travailler dessus :</p>
+<pre><code class="lang-SQL"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span>
+comptes
+<span class="hljs-keyword">JOIN</span>
+bourse
+<span class="hljs-keyword">ON</span> comptes.idStock = bourse.idStock
+</code></pre>
+<p>Va renvoyer la &quot;table&quot; initiale.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idClient</th>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">quantité</th>
+<th style="text-align:center">valeurStock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">122</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">47</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">104</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">57</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<p>Et on peut y appliquer tout ce que l&#39;on a vu précédemment :</p>
+<pre><code class="lang-SQL"><span class="hljs-keyword">SELECT</span> idStock, quantité, valeurStock <span class="hljs-keyword">FROM</span>
+compte
+<span class="hljs-keyword">JOIN</span>
+bourse
+<span class="hljs-keyword">ON</span> comptes.idStock = bourse.idStock
+<span class="hljs-keyword">WHERE</span> idClient = <span class="hljs-number">104</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> valeurStock <span class="hljs-keyword">ASC</span>
+</code></pre>
+<p>qui donne</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">idStock</th>
+<th style="text-align:center">quantité</th>
+<th style="text-align:center">valeurStock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">54</td>
+<td style="text-align:center">57</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">97</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">18</td>
+</tr>
+</tbody>
+</table>
+<p>En utilisant SQL, il est possible de gérer efficacement les données d&#39;une entreprise et de les rendre facilement accessibles pour une analyse et une exploitation ultérieure. C&#39;est pourquoi SQL est un outil incontournable pour les professionnels de l&#39;informatique et de la gestion de données.</p>
