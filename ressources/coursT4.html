@@ -1,0 +1,108 @@
+<h1 id="les-piles-et-les-files">Les Piles et les Files</h1>
+<p>Les <strong>piles</strong> et les <strong>files</strong> sont des types n&#39;existant pas formellement en Python. Pour les exploiter nous utiliserons donc dans un premier temps les <strong>listes</strong> en se restreignant à quelques commandes basiques.</p>
+<h2 id="les-piles">Les PILES</h2>
+<p>Les piles sont des objets FILO (First In Last Out), c&#39;est-à-dire que les valeurs entrées en premier ne peuvent être récupérées que en dernier. Exactement comme une pile de crêpes, la première crêpe cuite sera mangée en dernier.<br>La représentation la plus courante est celle d&#39;une pile de dossiers. Pour accéder à celui qui est en dessous on doit enlever ceux d&#39;au dessus un par un.
+<img src="https://pixy.org/src/452/thumbs350/4522322.jpg" alt="pile"></p>
+<p>Concernant les Piles on peut donc définir quatre opérations :</p>
+<ul>
+<li>Regarder si la pile est vide</li>
+<li>Regarder l&#39;élément au sommet de la pile</li>
+<li>Enlever l&#39;élément au sommet de la pile</li>
+<li>Ajouter un élément sur la pile</li>
+</ul>
+<p>Imaginons que l&#39;on a la pile suivante :</p>
+<pre><code class="lang-txt">╔═══╗
+║ <span class="hljs-number">5</span> ║
+╠═══╣
+║ <span class="hljs-number">4</span> ║
+╠═══╣
+║ <span class="hljs-number">8</span> ║
+╠═══╣
+║ <span class="hljs-number">6</span> ║
+╠═══╣
+║ <span class="hljs-number">3</span> ║
+╠═══╣
+║ <span class="hljs-number">2</span> ║ 
+╚═══╝
+</code></pre>
+<p>Voici successivement un dépilement, puis un empilement de la valeur 8</p>
+<pre><code class="lang-txt"> - depile -&gt; 
+╔═══╗      ╔═══╗       ╔═══╗
+║ <span class="hljs-number">5</span> ║      ║   ║       ║ <span class="hljs-number">8</span> ║
+╠═══╣      ╠═══╣       ╠═══╣
+║ <span class="hljs-number">4</span> ║      ║ <span class="hljs-number">4</span> ║       ║ <span class="hljs-number">4</span> ║
+╠═══╣      ╠═══╣       ╠═══╣
+║ <span class="hljs-number">8</span> ║      ║ <span class="hljs-number">8</span> ║       ║ <span class="hljs-number">8</span> ║
+╠═══╣      ╠═══╣       ╠═══╣
+║ <span class="hljs-number">6</span> ║      ║ <span class="hljs-number">6</span> ║       ║ <span class="hljs-number">6</span> ║
+╠═══╣      ╠═══╣       ╠═══╣
+║ <span class="hljs-number">3</span> ║      ║ <span class="hljs-number">3</span> ║       ║ <span class="hljs-number">3</span> ║
+╠═══╣      ╠═══╣       ╠═══╣
+║ <span class="hljs-number">2</span> ║      ║ <span class="hljs-number">2</span> ║       ║ <span class="hljs-number">2</span> ║
+╚═══╝      ╚═══╝       ╚═══╝
+             - empile(<span class="hljs-number">8</span>) -&gt;
+</code></pre>
+<p>Pour travailler sur les piles en Python on se limitera aux fonctions :</p>
+<table>
+<thead>
+<tr>
+<th>opération</th>
+<th>Fonction en Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>regarder si la pile est vide</td>
+<td><code>not not Pile</code></td>
+</tr>
+<tr>
+<td>regarder le sommet de la pile</td>
+<td><code>Pile[-1]</code></td>
+</tr>
+<tr>
+<td>Enlever l&#39;élément au sommet</td>
+<td><code>Pile.pop()</code></td>
+</tr>
+<tr>
+<td>Ajouter un élément à la pile</td>
+<td><code>Pile.append(element)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="les-files">Les files</h2>
+<p>Les files sont des objets FIFO (First In First Out), c&#39;est-à-dire que les valeurs entrées en premier sont récupérées en premier. Exactement comme dans une file d&#39;attente, le premier arrivé sera le premier servi.<br><img src="https://thumbs.dreamstime.com/b/les-gens-dans-la-file-d-attente-15346257.jpg" alt="file"></p>
+<p>Pour les files, les opérations autorisées sont quasiment les mêmes que pour les piles :</p>
+<ul>
+<li>Regarder le premier élément de la file</li>
+<li>Ajouter un élément à la file</li>
+<li>Enlever le premier élément de la file</li>
+<li>Regarder si la file est vide</li>
+</ul>
+<p>Pour travailler sur les files en Python on se limitera aux fonctions :</p>
+<table>
+<thead>
+<tr>
+<th>opération</th>
+<th>Fonction en Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>regarder si la file est vide</td>
+<td><code>not File</code></td>
+</tr>
+<tr>
+<td>regarder début de la file</td>
+<td><code>File[0]</code></td>
+</tr>
+<tr>
+<td>Enlever le premier élément</td>
+<td><code>File.pop(0)</code></td>
+</tr>
+<tr>
+<td>Ajouter un élément à la file</td>
+<td><code>File.append(element)</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="voir-td-pour-plus-de-d-tails">Voir TD pour plus de détails</h1>
